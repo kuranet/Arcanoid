@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    static List<Obstacle> obstacles;
+
     void Awake()
     {
-        List<Obstacle> obstacles = FileReader.ReadFromFile("Assets/Resources/level.txt");         
-        CreateLevel(obstacles);
+        obstacles = FileReader.ReadFromFile("Assets/Resources/level.txt");         
     }
 
-    void CreateLevel(List<Obstacle> obstacles)
+    public static void CreateLevel()
     {
         foreach(Obstacle obstacle in obstacles)
         {

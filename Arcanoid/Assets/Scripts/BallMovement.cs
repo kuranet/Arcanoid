@@ -9,10 +9,21 @@ public class BallMovement : MonoBehaviour
 
     public static bool isMoving = false; // to control if ball should move
 
+    private void Awake()
+    {
+        ScreenUtils.Initialize();
+    }
+
     void FixedUpdate()
     {
         if (isMoving)
         {
+            Vector2 position = transform.position;
+            if (position.x > ScreenUtils.ScreenRight || position.x < ScreenUtils.ScreenLeft)
+                velocity.x *= -1;
+            if (position.y > ScreenUtils.ScreenTop)
+                velocity.y *= -1;
+
             Vector2 target = (Vector2)transform.position + velocity;
             transform.position = Vector2.MoveTowards(transform.position, target, speed);
         }
