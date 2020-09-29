@@ -24,11 +24,7 @@ public class Boundary : Obstacle
         Vector2 position = (start + end) / 2;
         obj.transform.position = position;
 
-        Vector2 normal = (end - start).normalized;
-        Debug.Log("NORMAL' " + normal.x + "   " + normal.y);
-
-        //NEED TO FIX
-        ///depends on end and start position of the boundary
-        obj.transform.rotation = Quaternion.Euler(0, 0, 90 -Mathf.Acos(normal.x)*Mathf.Rad2Deg + 90);
+        Vector2 directionVector = (end - start).normalized;
+        obj.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, directionVector));
     }
 }
