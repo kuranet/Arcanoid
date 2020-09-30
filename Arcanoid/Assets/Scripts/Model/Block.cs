@@ -17,7 +17,6 @@ public class Block : Obstacle
 
     public override void Create()
     {
-        Debug.Log("Successfully create block");
         GameObject obj = (GameObject)GameObject.Instantiate(blockPrefab);
         obj.transform.position = position;
     }

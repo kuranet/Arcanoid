@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
     public static Vector2 velocity;
     public float speed = 2f;
+    float radius;
 
     public static bool isMoving = false; // to control if ball should move
 
@@ -17,6 +16,7 @@ public class BallMovement : MonoBehaviour
     {
         ScreenUtils.Initialize();
         velocity = new Vector2(0, 0);
+        radius = GetComponent<CircleCollider2D>().radius * transform.localScale.x;
     }
 
     void FixedUpdate()
@@ -24,9 +24,9 @@ public class BallMovement : MonoBehaviour
         if (isMoving)
         {
             Vector2 position = transform.position;
-            if (position.x > ScreenUtils.ScreenRight || position.x < ScreenUtils.ScreenLeft)
+            if ((position.x + radius)> ScreenUtils.ScreenRight || (position.x - radius) < ScreenUtils.ScreenLeft)
                 velocity.x *= -1;
-            if (position.y > ScreenUtils.ScreenTop)
+            if ((position.y + radius) > ScreenUtils.ScreenTop)
                 velocity.y *= -1;
             if (position.y < ScreenUtils.ScreenBottom)
             {

@@ -16,7 +16,6 @@ public class Boundary : Obstacle
 
     public override void Create()
     {
-        Debug.Log("Successfully create boundary");
         GameObject obj = (GameObject)GameObject.Instantiate(boundaryPrefab);
 
         float scale = Vector2.Distance(start, end);

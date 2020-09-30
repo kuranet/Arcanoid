@@ -1900,6 +1900,10 @@ PrefabInstance:
       propertyPath: m_UseFullKinematicContacts
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8375604060007496779, guid: 98006948fe0dbf941a9c20d1f5930c4e, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8595875685435336410, guid: 98006948fe0dbf941a9c20d1f5930c4e, type: 3}
       propertyPath: m_Name
       value: Ball
