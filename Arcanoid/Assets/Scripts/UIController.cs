@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class UIController : MonoBehaviour
         RESRTART
     }
 
-
     [SerializeField] GameObject StartPanel;
     [SerializeField] GameObject ScorePanel;
     [SerializeField] GameObject RestartPanel;
     [SerializeField] GameObject WinPanel;
+
+    [SerializeField] Text loseText;
 
     GameState gameState = GameState.START;
 
@@ -29,10 +31,16 @@ public class UIController : MonoBehaviour
                 {
                     if (Input.touchCount > 0)
                     {
-                        gameState = GameState.PLAYING;
-                        StartPanel.SetActive(false);
-                        ScorePanel.SetActive(true);
-                        LevelGenerator.CreateLevel();
+                        Touch touch = Input.touches[0];
+                        if (touch.phase == TouchPhase.Moved)
+                        {
+                            gameState = GameState.PLAYING;
+                            StartPanel.SetActive(false);
+                            ScorePanel.SetActive(true);
+                            LevelGenerator.CreateLevel();
+
+                            PlayerMovement.isGameStarted = false;
+                        }
                     }
                     break;
                 }
@@ -40,14 +48,37 @@ public class UIController : MonoBehaviour
                 {
                     if (Input.touchCount > 0)
                     {
-                        SceneManager.LoadScene("SampleScene"); 
+                        Touch touch = Input.touches[0];
+                        if (touch.phase == TouchPhase.Ended)
+                            SceneManager.LoadScene("SampleScene");
                     }
                     break;
                 }
         }
     }
-    void UpdateLives()
+    private void OnEnable()
     {
+        ScoreController.LoadRestart += LoadResrartPanel;
+        ScoreController.LoadWin += LoadWinPanel;
 
+    }
+    private void OnDisable()
+    {
+        ScoreController.LoadRestart -= LoadResrartPanel;
+        ScoreController.LoadWin -= LoadWinPanel;
+    }
+
+    void LoadResrartPanel(int n) 
+    {
+        ScorePanel.SetActive(false);
+        RestartPanel.SetActive(true);
+        loseText.text = n.ToString();
+        gameState = GameState.RESRTART;
+    }
+    void LoadWinPanel()
+    {
+        ScorePanel.SetActive(false);
+        WinPanel.SetActive(true);
+        gameState = GameState.RESRTART; 
     }
 }

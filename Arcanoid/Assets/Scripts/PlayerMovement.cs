@@ -33,6 +33,23 @@ public class PlayerMovement : MonoBehaviour
                     BallMovement.velocity = new Vector2(0, 1);
                 }
             }
-        }        
+        }
+    }
+
+    private void OnEnable()
+    {
+        BallMovement.BallOutOfScreen += RespawnBall;
+    }
+    private void OnDisable()
+    {
+        BallMovement.BallOutOfScreen -= RespawnBall;
+    }
+
+    public void RespawnBall()
+    {
+        float heigh = 0.25f;
+        ball.position = transform.position + new Vector3(0, heigh, 0);
+        PlayerMovement.isGameStarted = false;
+
     }
 }

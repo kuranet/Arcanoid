@@ -7,7 +7,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Awake()
     {
-        obstacles = FileReader.ReadFromFile("Assets/Resources/level.txt");         
+        obstacles = FileReader.ReadFromFile("level");         
     }
 
     public static void CreateLevel()

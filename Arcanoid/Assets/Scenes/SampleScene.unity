@@ -217,6 +217,7 @@ MonoBehaviour:
   ScorePanel: {fileID: 626912211}
   RestartPanel: {fileID: 170680164}
   WinPanel: {fileID: 1827699562}
+  loseText: {fileID: 804857485}
 --- !u!1 &91642085
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +374,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &170680168
 RectTransform:
@@ -432,7 +433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 600, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400474480
@@ -730,6 +731,7 @@ GameObject:
   - component: {fileID: 626912214}
   - component: {fileID: 626912213}
   - component: {fileID: 626912212}
+  - component: {fileID: 626912216}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -795,7 +797,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &626912215
 RectTransform:
@@ -818,6 +820,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &626912216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626912211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd6e380a030a5448b614eb690764a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesText: {fileID: 742623296}
+  blockCountText: {fileID: 540702042}
 --- !u!1 &742623294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1417,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1827699566
 RectTransform:

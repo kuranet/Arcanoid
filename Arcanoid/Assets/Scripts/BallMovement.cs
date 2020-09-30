@@ -9,9 +9,14 @@ public class BallMovement : MonoBehaviour
 
     public static bool isMoving = false; // to control if ball should move
 
+    public delegate void ActionHandler();
+    public static event ActionHandler BallOutOfScreen;
+    public static event ActionHandler BreakBlock;
+
     private void Awake()
     {
         ScreenUtils.Initialize();
+        velocity = new Vector2(0, 0);
     }
 
     void FixedUpdate()
@@ -23,7 +28,12 @@ public class BallMovement : MonoBehaviour
                 velocity.x *= -1;
             if (position.y > ScreenUtils.ScreenTop)
                 velocity.y *= -1;
-
+            if (position.y < ScreenUtils.ScreenBottom)
+            {
+                if (BallOutOfScreen != null)
+                    BallOutOfScreen();
+                velocity = new Vector2(0, 0);
+            }
             Vector2 target = (Vector2)transform.position + velocity;
             transform.position = Vector2.MoveTowards(transform.position, target, speed);
         }
@@ -39,5 +49,12 @@ public class BallMovement : MonoBehaviour
         velocity = Quaternion.Euler(0, 0, -2*angle) * velocity;
         
         angle = Vector2.SignedAngle(contact.normal, velocity);
+
+        if(collision.collider.tag == "Block")
+        {
+            if (BreakBlock != null)
+                BreakBlock();
+            Destroy(collision.gameObject);
+        }
     }
 }
