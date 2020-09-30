@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
                     if (Input.touchCount > 0)
                     {
                         Touch touch = Input.touches[0];
-                        if (touch.phase == TouchPhase.Moved)
+                        if (touch.phase != TouchPhase.Ended)
                         {
                             gameState = GameState.PLAYING;
                             StartPanel.SetActive(false);
