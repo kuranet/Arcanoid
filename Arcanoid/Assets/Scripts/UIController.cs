@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     {
         START,
         PLAYING,
-        RESRTART
+        RESTART
     }
 
     [SerializeField] GameObject StartPanel;
@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
                 {
                     if (Input.touchCount > 0)
                     {
-                        Touch touch = Input.touches[0];
+                        Touch touch = Input.GetTouch(0);
                         if (touch.phase != TouchPhase.Ended)
                         {
                             gameState = GameState.PLAYING;
@@ -42,11 +42,11 @@ public class UIController : MonoBehaviour
                     }
                     break;
                 }
-            case GameState.RESRTART:
+            case GameState.RESTART:
                 {
                     if (Input.touchCount > 0)
                     {
-                        Touch touch = Input.touches[0];
+                        Touch touch = Input.GetTouch(0);
                         if (touch.phase == TouchPhase.Ended)
                             SceneManager.LoadScene("SampleScene");
                     }
@@ -71,12 +71,12 @@ public class UIController : MonoBehaviour
         ScorePanel.SetActive(false);
         RestartPanel.SetActive(true);
         loseText.text = n.ToString();
-        gameState = GameState.RESRTART;
+        gameState = GameState.RESTART;
     }
     void LoadWinPanel()
     {
         ScorePanel.SetActive(false);
         WinPanel.SetActive(true);
-        gameState = GameState.RESRTART; 
+        gameState = GameState.RESTART; 
     }
 }

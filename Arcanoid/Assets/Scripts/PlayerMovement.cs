@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.touches[0];
+            Touch touch = Input.GetTouch(0);
             Vector2 touchPosition = touch.position;
             touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
 
@@ -22,8 +22,7 @@ public class PlayerMovement : MonoBehaviour
                 target = new Vector2(ScreenUtils.ScreenRight - playerLength, transform.position.y);
             else if(target.x - playerLength < ScreenUtils.ScreenLeft)
                 target = new Vector2(ScreenUtils.ScreenLeft + playerLength, transform.position.y);
-
-
+            
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
             if (!isGameStarted)
