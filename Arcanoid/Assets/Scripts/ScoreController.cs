@@ -16,7 +16,7 @@ public class ScoreController : MonoBehaviour
 
     private void OnEnable()
     {
-        blockCountText.text = blockCount.ToString();
+        blockCountText.text = Block.count.ToString();
         livesText.text = lives.ToString();
 
         BallMovement.BreakBlock += UpdateBlockScore;

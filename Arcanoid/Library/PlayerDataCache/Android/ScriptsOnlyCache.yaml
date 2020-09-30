@@ -607,4 +607,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/coursera/work/arcanoidbuild.apk
+  playerPath: C:/coursera/work/prefinal.apk
