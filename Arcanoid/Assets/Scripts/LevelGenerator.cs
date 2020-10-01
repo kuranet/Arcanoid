@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    static List<Obstacle> obstacles;
+    public static List<Obstacle> obstacles { get; private set; }
 
     void Awake()
     {

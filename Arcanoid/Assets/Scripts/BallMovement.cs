@@ -10,13 +10,12 @@ public class BallMovement : MonoBehaviour
 
     public delegate void ActionHandler();
     public static event ActionHandler BallOutOfScreen;
-    public static event ActionHandler BreakBlock;
 
     private void Awake()
     {
         ScreenUtils.Initialize();
         velocity = new Vector2(0, 0);
-        radius = GetComponent<CircleCollider2D>().radius * transform.localScale.x;
+        radius = transform.localScale.x / 2;
     }
 
     void FixedUpdate()
@@ -36,33 +35,6 @@ public class BallMovement : MonoBehaviour
             }
             Vector2 target = (Vector2)transform.position + velocity;
             transform.position = Vector2.MoveTowards(transform.position, target, speed);
-            isUpdatedVecolity = false;
-        }
-    }
-
-    bool isUpdatedVecolity = false; //need to avoid 2 collisions at the same frame
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!isUpdatedVecolity)
-        {
-            ContactPoint2D contact = collision.GetContact(0);
-
-            velocity *= -1;
-            float angle = Vector2.SignedAngle(contact.normal, velocity);
-
-            velocity = Quaternion.Euler(0, 0, -2 * angle) * velocity;
-
-            angle = Vector2.SignedAngle(contact.normal, velocity);
-
-            if (collision.collider.tag == "Block")
-            {
-                if (BreakBlock != null)
-                    BreakBlock();
-                Destroy(collision.gameObject);
-            }
-            
-            isUpdatedVecolity = true;
         }
     }
 }

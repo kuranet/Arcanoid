@@ -11,6 +11,8 @@ public class Boundary : Obstacle
         start = st;
         end = en;
 
+        position = (start + end) / 2;
+
         boundaryPrefab = Resources.Load("Prefabs/Boundary");
     }
 
@@ -21,8 +23,9 @@ public class Boundary : Obstacle
         float scale = Vector2.Distance(start, end);
         obj.transform.localScale = new Vector3(scale, obj.transform.localScale.y);
 
-        Vector2 position = (start + end) / 2;
         obj.transform.position = position;
+
+        collisionRadius = Mathf.Sqrt(Mathf.Pow(obj.transform.localScale.x/2, 2) + Mathf.Pow(obj.transform.localScale.y/2, 2));
 
         Vector2 directionVector = (end - start).normalized;
         obj.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, directionVector));

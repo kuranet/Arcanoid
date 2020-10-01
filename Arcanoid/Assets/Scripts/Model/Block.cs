@@ -2,8 +2,6 @@
 
 public class Block : Obstacle
 {
-    Vector2 position;
-
     Object blockPrefab;
 
     public static int count = 0;
@@ -19,5 +17,6 @@ public class Block : Obstacle
     {
         GameObject obj = (GameObject)GameObject.Instantiate(blockPrefab);
         obj.transform.position = position;
+        collisionRadius = Mathf.Sqrt(Mathf.Pow(obj.transform.localScale.x/2, 2) + Mathf.Pow(obj.transform.localScale.y/2, 2));
     }
 }
