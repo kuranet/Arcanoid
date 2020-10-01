@@ -44,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        BallMovement.BallOutOfScreen += RespawnBall;
+        GameManager.BallOutOfScreen += RespawnBall;
     }
     private void OnDisable()
     {
-        BallMovement.BallOutOfScreen -= RespawnBall;
+        GameManager.BallOutOfScreen -= RespawnBall;
     }
 
     public void RespawnBall()

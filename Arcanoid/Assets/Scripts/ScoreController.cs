@@ -20,12 +20,12 @@ public class ScoreController : MonoBehaviour
         livesText.text = lives.ToString();
 
         //BallMovement.BreakBlock += UpdateBlockScore;
-        BallMovement.BallOutOfScreen += UpdateLiveScore;
+        //BallMovement.BallOutOfScreen += UpdateLiveScore;
     }
     private void OnDisable()
     {
         //BallMovement.BreakBlock -= UpdateBlockScore;
-        BallMovement.BallOutOfScreen -= UpdateLiveScore;
+        //BallMovement.BallOutOfScreen -= UpdateLiveScore;
         Block.count = 0;
         lives = 3;
     }
