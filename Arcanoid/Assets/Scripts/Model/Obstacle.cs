@@ -10,7 +10,9 @@ public abstract class Obstacle
     public bool isCheckedForCurrentVelocity = false;
     public Vector2 curretnVelocity;
 
+    public bool isFindPoint;
     public Vector2 pointOfCollision;
+    public Vector2 normalToCollision;
 
     public virtual void Create()
     {
